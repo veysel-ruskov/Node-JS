@@ -64,55 +64,60 @@ swiming("10464", "1500", "20"); //exepct: No, he failed! He was 20786.00 seconds
 например &quot;1:03&quot;.
 */
 function onTime(inputExamStartHour, inputExamStartMinute, inputHourArrival, inputMinuteArrival) {
+
     let examStartHour = +inputExamStartHour;
     let examStartMinute = +inputExamStartMinute;
     let hourArrival = +inputHourArrival;
     let minuteArrival = +inputMinuteArrival;
-    
+
     let hour = "60";
     let resultStartTime = examStartHour + ":" + examStartMinute;
     let resultArriveTime = hourArrival + ":" + minuteArrival;
-    let resultMinutes = ((hourArrival - examStartHour)*hour) + Math.abs(minuteArrival - examStartMinute);    
+    let resultMinutes = ((hourArrival - examStartHour) * hour) + Math.abs(minuteArrival - examStartMinute);
     let resultHours = (hourArrival - examStartHour);
 
- 
+
 
     if (examStartHour < hourArrival || examStartHour == hourArrival && examStartMinute < minuteArrival) {
         console.log("Late");
-        if(resultMinutes < hour){
-            console.log(resultMinutes +" minutes after the start");       
-        }else{
+        if (resultMinutes < hour) {
+            console.log(resultMinutes + " minutes after the start");
+        } else {
             console.log(resultHours + ":" + resultMinutes + "hours after the start");
         }
-
-    } else if(resultStartTime == resultArriveTime) {
+    } else if (resultStartTime == resultArriveTime) {
         console.log("On time");
-    }else if(examStartHour >= hourArrival && examStartMinute > minuteArrival){
+    } else if (examStartHour >= hourArrival && examStartMinute > minuteArrival) {
         console.log("Early");
-        if(Math.abs(resultMinutes) < hour){
-            console.log(Math.abs(resultMinutes) + " minutes before the start");       
+        if (Math.abs(resultMinutes) < hour) {
+            console.log(Math.abs(resultMinutes) + " minutes before the start");
         }
-        else{
-            console.log(Math.abs(resultHours) + ":" + (resultMinutes - (resultHours*hour)) + " hours before the start");
+        else {
+            console.log(Math.abs(resultHours) + ":" + (resultMinutes - (resultHours * hour)) + " hours before the start");
         }
     }
 }
 onTime("9", "30", "9", "50"); //expected Late20 minutes after the start
 
-/*8. Заплата*
-Шеф на компания забелязва че все повече служители прекарват време в сайтове, които ги разсейват.
-За да предотврати това, той въвежда изненадващи проверки на отворените табове на браузъра на
-служителите си. Според сайта се налагат различни глоби:
- &quot;Facebook&quot; -&gt; 150 лв.
- &quot;Instagram&quot; -&gt; 100 лв.
- &quot;Reddit&quot; -&gt; 50 лв.
-От конзолата се четат два реда:
- Брой отворени табове в браузъра n - цяло число в интервала [1...10]
- Заплата - число в интервала [500...1500]
-След това n – на брой пъти се чете име на уебсайт – текст
-Ако по време на проверката заплатата стане по-малка или равна на 0 лева, на конзолата се изписва
-&quot;You have lost your salary.&quot; и програмата приключва. В противен случай след проверката на
-конзолата се изписва остатъкът от заплатата (да се изпише като цяло число). */
+/* 9. Най-малко число*
+Напишете програма, която получава n-на брой числа (n &gt; 0) и намира най-малкото измежду тях. Първо се
+получава число n, а след това самите n числа. */
+
+function minNumber(inputNumber) {
+    let numberCount = Number(inputNumber[0]);
+    let temp = Infinity;
+    let currentNumber;
+
+    for (let i = 0; i < numberCount; i++) {
+        currentNumber = Number(inputNumber[i + 1]);
+
+        if (currentNumber > temp) {
+            temp = currentNumber;
+        }
+    }
+    console.log(currentNumber);
+}
+minNumber(["2", "100", "99"]); // expect 99
 
 /*6. Торта
 Поканени сте на 30-ти рожден ден, на който рожденикът черпи с огромна торта. Той обаче не знае колко
@@ -124,6 +129,31 @@ onTime("9", "30", "9", "50"); //expected Late20 minutes after the start
 Да се отпечата на конзолата един от следните редове:
  &quot;{брой парчета} pieces are left.&quot; - ако стигнете до STOP и не са свършили парчетата торта
  &quot;No more cake left! You need {брой недостигащи парчета} pieces more.&quot; */
+
+function cake(input) {
+    let pieceX = Number(input.shift());
+    let pieceY = Number(input.shift());
+    let piecesTaken = 0;
+    let fullCake = pieceX * pieceY;
+    let takePiece = input.shift();
+
+    while (takePiece !== 'STOP') {
+        piecesTaken += Number(takePiece);
+
+        if (piecesTaken > fullCake) {
+            break;
+        }
+
+        takePiece = input.shift();
+    }
+
+    if (piecesTaken > fullCake) {
+        console.log("No more cake left! You need" + (piecesTaken - fullCake) + " pieces more.");
+    } else {
+        console.log((piecesTaken - fullCake) + " pieces are left.")
+    }
+}
+cake(["10", "10", "20", "20", "20", "20", "21"]);
 
 /* 5. Специални числа
 Да се напише функция, която получава едно цяло число N, въведено от потребителя и генерира всички
@@ -139,3 +169,4 @@ onTime("9", "30", "9", "50"); //expected Late20 minutes after the start
 Функцията получава едно цяло число в интервала [1…600000]
 Изход
 На конзолата трябва да се отпечатат всички “специални” числа, разделени с интервал*/
+
