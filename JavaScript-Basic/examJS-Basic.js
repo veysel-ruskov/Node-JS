@@ -148,25 +148,11 @@ function cake(input) {
     }
 
     if (piecesTaken > fullCake) {
-        console.log("No more cake left! You need" + (piecesTaken - fullCake) + " pieces more.");
+        console.log("No more cake left! You need " + (piecesTaken - fullCake) + " pieces more.");
     } else {
-        console.log((piecesTaken - fullCake) + " pieces are left.")
+        console.log((fullCake - piecesTaken) + " pieces are left.")
     }
 }
-cake(["10", "10", "20", "20", "20", "20", "21"]);
+cake(["10", "10", "20", "20", "20", "20", "21"]); // No more cake left! You need 1 pieces more.
 
-/* 5. Специални числа
-Да се напише функция, която получава едно цяло число N, въведено от потребителя и генерира всички
-възможни “специални” числа от 1111 до 9999. За да бъде “специалнo” едно число, то трябва да отговаря на
-следното условие:
- N да се дели на всяка една от неговите цифри без остатък.
-Пример: при N = 16, 2418 е специално число:
- 16 / 2 = 8 без остатък
- 16 / 4 = 4 без остатък
- 16 / 1 = 16 без остатък
- 16 / 8 = 2 без остатък
-Вход
-Функцията получава едно цяло число в интервала [1…600000]
-Изход
-На конзолата трябва да се отпечатат всички “специални” числа, разделени с интервал*/
 
